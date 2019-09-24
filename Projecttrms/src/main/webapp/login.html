@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="CSS/index.css"> 
+    </head>
+    <body>
+            <h2 id="log">Login</h2>
+<div class="action">
+         
+              Username:<br>
+              <input type="text" name="username" id="uname" >
+              <br>
+              Password:<br>
+              <input type="text" name="password" id="pswd" >
+              <br><br>
+              <input type="submit" value="Submit" onClick=Login()>
+             
+        </div>
+    </body>
+    <script >
+    function Login(){
+    	 let uname = document.getElementById("uname").value;
+ 	    let pswd = document.getElementById("pswd").value;
+ 		let xhttp = new XMLHttpRequest();
+
+ 		xhttp.onreadystatechange = function() {
+ 			if(this.readyState == 4 && this.status == 200) {
+ 				let EmpLogin= JSON.parse(this.responseText);
+
+ 			}
+ 		}
+
+ 		  xhttp.open("GET", "http://localhost:8080/Projecttrms/login.do", true);
+ 		   xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    	    xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+ 		xhttp.send("uname="+uname+"&pswd="+pswd);
+    }
+    </script>
+</html>
